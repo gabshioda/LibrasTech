@@ -1,0 +1,33 @@
+.libras-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+}
+
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.input-field {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 16px;
+    background: transparent;
+}
+
+.btn-login {
+    margin-top: 100px;
+}
+
+.link {
+    font-size: 14px;
+    text-decoration: underline;
+}
