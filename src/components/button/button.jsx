@@ -2,7 +2,7 @@ import React from 'react'
 import './button.scss'
 
 export function Button({ size, href, children, as, className }) {
-  const DynamicTag = as || 'a'
+  const DynamicTag = as || 'button'
 
   return (
     <DynamicTag

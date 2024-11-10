@@ -12,7 +12,7 @@ export function SignUpForm() {
         <div className="signup-libras-form">
           <FaRegUser />
           <input
-            type="email"
+            type="text"
             placeholder="Digite seu nome completo"
             className="signup-input-field"
           />

@@ -3,8 +3,21 @@ import "./login.scss";
 import Title from "../title/title";
 import Button from "../button/button";
 import { FaLock, FaRegEnvelope } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-export function LoginForm({ children }) {
+
+export function LoginForm() {
+
+  const navigate = useNavigate();
+  
+  const redirect = () => {
+    navigate("/list");
+  };
+
+  const newUser = () => {
+    navigate("/signup");
+  };
+
   return (
     <>
       <div className="form-wrapper">
@@ -26,8 +39,8 @@ export function LoginForm({ children }) {
           />
           </div>
 
-          <a href="youtube.com" className="link">Não possui cadastro?</a>
-          <Button size="large" className='btn-login'>Entrar</Button>
+          <a className="link" onClick={newUser}>Não possui cadastro?</a>
+          <button className='btn-login' onClick={redirect}>Entrar</button>
       </div>
     </>
   );
