@@ -11,7 +11,7 @@ export function LoginForm() {
   const navigate = useNavigate();
   
   const redirect = () => {
-    navigate("/list");
+    navigate("/redirect");
   };
 
   const newUser = () => {

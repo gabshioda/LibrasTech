@@ -11,12 +11,16 @@ export function Identify() {
     navigate("/login");
   };
 
+  const userLogin = () => {
+    navigate('/user-login')
+  }
+
 
   return (
     <div>
       <Title>Identifique-se</Title>
       <div className="identify-btn">
-        <button size="small" onClick={redirectUser} className="btn-style">
+        <button size="small" onClick={userLogin} className="btn-style">
           Usuário
         </button>
         <button onClick={redirectUser} className="btn-style">

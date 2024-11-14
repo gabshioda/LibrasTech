@@ -3,8 +3,17 @@ import "./signup.scss";
 import Title from "../title/title";
 import Button from "../button/button";
 import { FaLock, FaRegEnvelope, FaRegUser } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export function SignUpForm() {
+
+  const navigate = useNavigate();
+  
+
+  const newUser = () => {
+    navigate("/login");
+  };
+
   return (
     <>
       <div className="signup-wrapper">
@@ -33,7 +42,7 @@ export function SignUpForm() {
             className="signup-input-field"
           />
           </div>
-          <Button size="large" className='btn-signup'>Cadastrar</Button>
+          <button size="large" className='btn-signup' onClick={newUser}>Cadastrar</button>
       </div>
     </>
   );

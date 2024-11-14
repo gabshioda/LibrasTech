@@ -1,29 +1,36 @@
 .libras-form {
+  @media screen and (min-width: 1024px) {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
     border-bottom: 1px solid #ccc;
     padding-bottom: 8px;
+  }
 }
 
 .form-wrapper {
+  @media screen and (min-width: 1024px) {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
+  }
 }
 
 .input-field {
+  @media screen and (min-width: 1024px) {
     border: none;
     outline: none;
     flex: 1;
     font-size: 16px;
     background: transparent;
+  }
 }
 
 .btn-login {
+  @media screen and (min-width: 1024px) {
     margin-top: 100px;
     display: flex;
     align-items: center;
@@ -31,15 +38,18 @@
     font-size: 22px;
     font-weight: 600;
     padding: 10px 10px;
-    background-color: #22D4FD;
+    background-color: #22d4fd;
     color: #000;
     border-radius: 10px;
     height: 55px;
     width: 531px;
+  }
 }
 
 .link {
+  @media screen and (min-width: 1024px) {
     font-size: 14px;
     text-decoration: underline;
     cursor: pointer;
+  }
 }

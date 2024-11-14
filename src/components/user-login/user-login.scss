@@ -1,4 +1,4 @@
-.signup-libras-form {
+.user-login-libras-form {
   @media screen and (min-width: 1024px) {
     display: flex;
     align-items: center;
@@ -9,7 +9,7 @@
   }
 }
 
-.signup-wrapper {
+.user-login-wrapper {
   @media screen and (min-width: 1024px) {
     display: flex;
     flex-direction: column;
@@ -19,7 +19,7 @@
   }
 }
 
-.signup-input-field {
+.user-login-input-field {
   @media screen and (min-width: 1024px) {
     border: none;
     outline: none;
@@ -29,7 +29,7 @@
   }
 }
 
-.btn-signup {
+.user-login-btn {
   @media screen and (min-width: 1024px) {
     margin-top: 100px;
     display: flex;
