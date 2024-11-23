@@ -40,7 +40,7 @@ const RedirectPage = () => {
   useEffect(() => {
     // Chama a função inicialmente e a cada 3 segundos
     checkAvailability();
-    const intervalId = setInterval(checkAvailability, 3000);
+    const intervalId = setInterval(checkAvailability, 1000);
 
     // Limpeza do intervalo quando o componente for desmontado
     return () => clearInterval(intervalId);

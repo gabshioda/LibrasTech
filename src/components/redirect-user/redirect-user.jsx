@@ -51,7 +51,7 @@ export function RedirectUser() {
 
     // Chama a função inicialmente e a cada 3 segundos
     checkAvailableVolunteer();
-    const intervalId = setInterval(checkAvailableVolunteer, 3000);
+    const intervalId = setInterval(checkAvailableVolunteer, 1000);
 
     // Limpeza do intervalo quando o componente for desmontado
     return () => clearInterval(intervalId);
