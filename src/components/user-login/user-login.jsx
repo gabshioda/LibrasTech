@@ -3,27 +3,50 @@ import "./user-login.scss";
 import Title from "../title/title";
 import { FaRegUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { io } from 'socket.io-client';
-
-const socket = io('http://localhost:3000');
 
 export function UserLogin() {
-    const [nome, setNome] = useState('');
-    const navigate = useNavigate();
+  const [nome, setNome] = useState("");
+  const navigate = useNavigate();
 
-    const handleCadastrar = () => {
-       if (nome.trim()) {
-      // Emite o evento 'nomeusuario' com o nome do usuário para o backend
-      socket.emit("cadastrarUsuario", { nome }, (response) => {
-        console.log("Resposta do servidor:", response);
-      });
+  const handleCadastrar = async () => {
+    if (nome.trim()) {
+      try {
+        const response = await fetch(
+          "http://localhost:8080/usuarios/usuarioEmFila",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: new URLSearchParams({
+              nome: nome.trim(),
+              buscandoAtendimento: "true",
+            }),
+          }
+        );
 
-      // Redireciona para a página de redirecionamento com o nome do usuário
-      navigate("/redirect-user", { state: { nome } });
+         if (response.status !== 200) {
+           throw new Error(
+            `Erro na resposta do servidor: ${response.statusText}`
+          );
+       }
+
+        const textResponse = await response.text(); // Primeiro, obtenha a resposta como texto
+        console.log("Resposta bruta do servidor:", textResponse);
+
+        const responseData = JSON.parse(textResponse); // Depois, tente parsear como JSON
+        console.log("Resposta JSON do servidor:", responseData);
+
+        // Redireciona para a página de redirecionamento com o nome do usuário
+        navigate("/redirect-user", { state: { nome } });
+      } catch (error) {
+        console.error("Erro ao cadastrar usuário:", error);
+        alert("Erro ao cadastrar usuário. Por favor, tente novamente.");
+      }
     } else {
       alert("Por favor, insira seu nome.");
     }
-    }
+  };
 
   return (
     <>
@@ -39,7 +62,13 @@ export function UserLogin() {
             onChange={(e) => setNome(e.target.value)}
           />
         </div>
-          <button size="large" className='user-login-btn' onClick={handleCadastrar}>Cadastrar</button>
+        <button
+          size="large"
+          className="user-login-btn"
+          onClick={handleCadastrar}
+        >
+          Cadastrar
+        </button>
       </div>
     </>
   );

@@ -3,39 +3,48 @@ import "./signup.scss";
 import Title from "../title/title";
 import { FaLock, FaRegEnvelope, FaRegUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { io } from "socket.io-client";
-
-const socket = io("ws://localhost:3001");
 
 export function SignUpForm() {
-
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  
 
- const handleSignUp = () => {
-  if (name.trim() && email.trim() && password.trim()) {
-    // Emite o evento 'cadastrarUsuario' com os dados de nome, email e senha
-    socket.emit("cadastrarUsuario", { name, email, password }, (response) => {
-      // Resposta do servidor pode ser personalizada (ex.: "success" ou erro)
-      console.log("Resposta do servidor:", response);
+  const handleSignUp = async () => {
+    if (name.trim() && email.trim() && password.trim()) {
+      try {
+        const response = await fetch("/voluntarios/cadastro", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json", // Define o formato como JSON
+          },
+          body: JSON.stringify({
+            nome: name.trim(), // Mapeia os campos conforme o payload esperado
+            email: email.trim(),
+            senha: password.trim(),
+            disponivel: false,
+          }),
+        });
 
-      if (response === "success") {
-        // Se o cadastro for bem-sucedido, navega para a página de login
+        if (response.status !== 200) {
+          throw new Error(
+            `Erro na resposta do servidor: ${response.statusText}`
+          );
+        }
+
+        const responseData = await response.json();
+        console.log("Resposta do servidor:", responseData);
+
+        // Se o cadastro for bem-sucedido (com base em response.ok), navega para a página de login
         navigate("/login");
-      } else {
-        // Caso contrário, exibe um alerta com a mensagem de erro
-        alert("Erro ao cadastrar usuário. Tente novamente.");
+      } catch (error) {
+        console.error("Erro ao cadastrar usuário:", error);
+        alert("Erro ao cadastrar usuário. Por favor, tente novamente.");
       }
-    });
-  } else {
-    alert("Por favor, preencha todos os campos.");
-  }
- }
-
-
+    } else {
+      alert("Por favor, preencha todos os campos.");
+    }
+  };
 
   return (
     <>
@@ -70,8 +79,10 @@ export function SignUpForm() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          </div>
-          <button size="large" className='btn-signup' onClick={handleSignUp}>Cadastrar</button>
+        </div>
+        <button size="large" className="btn-signup" onClick={handleSignUp}>
+          Cadastrar
+        </button>
       </div>
     </>
   );

@@ -1,20 +1,18 @@
 import React from "react";
 import "./identify.scss";
 import Title from "../title/title";
-import Button from "../button/button";
 import { useNavigate } from "react-router-dom";
 
 export function Identify() {
   const navigate = useNavigate();
-  
+
   const redirectUser = () => {
     navigate("/login");
   };
 
   const userLogin = () => {
-    navigate('/user-login')
-  }
-
+    navigate("/user-login");
+  };
 
   return (
     <div>

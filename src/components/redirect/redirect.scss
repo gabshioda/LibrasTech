@@ -1,13 +1,13 @@
 .redirect-align {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
 
-    @media screen and (min-width: 1024px) {
-      gap: 60px;
-    }
+  @media screen and (min-width: 1024px) {
+    gap: 60px;
+  }
 }
 
 .redirect-button {
@@ -18,8 +18,7 @@
   font-size: 22px;
   font-weight: 600;
   padding: 10px 10px;
-  background-color: #22d4fd;
-  color: #000;
+  color: white;
   border-radius: 10px;
   height: 55px;
   width: 350px;
@@ -27,4 +26,19 @@
     margin-top: 100px;
     width: 531px;
   }
+}
+
+.redirect-button.available {
+  background-color: red;
+  color: white;
+}
+
+.redirect-button.unavailable {
+  background-color: blue;
+  color: white;
+}
+
+.redirect-button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
 }
