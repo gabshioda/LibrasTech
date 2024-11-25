@@ -1,15 +1,19 @@
-import './App.css'
-import Redirect from './components/redirect/redirect'
-import RedirectUser from './components/redirect-user/redirect-user'
-import Identify from './components/identify/identify'
-import Login from './components/login/login'
-import SignUp from './components/signup/signup'
-import List from './components/list/list'
-import UserLogin from './components/user-login/user-login'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import "./App.css";
+import Redirect from "./components/redirect/redirect";
+import RedirectUser from "./components/redirect-user/redirect-user";
+import Identify from "./components/identify/identify";
+import Login from "./components/login/login";
+import SignUp from "./components/signup/signup";
+import List from "./components/list/list";
+import UserLogin from "./components/user-login/user-login";
+import FAQ from "./components/faq/faq";
+import Footer from './components/footer/footer'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
+    <>
+     
       <Router>
         <Routes>
           <Route path="/" element={<Identify />} />
@@ -20,9 +24,12 @@ function App() {
           <Route path="/redirect" element={<Redirect />} />
           <Route path="/redirect-user" element={<RedirectUser />} />
           <Route path="/user-login" element={<UserLogin />} />
+          <Route path="/faq" element={<FAQ />} />
         </Routes>
       </Router>
-  )
+      <footer><Footer /></footer>
+    </>
+  );
 }
 
-export default App
+export default App;
