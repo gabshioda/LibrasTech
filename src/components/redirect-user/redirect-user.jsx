@@ -15,27 +15,13 @@ export function RedirectUser() {
         );
 
         if (response.status === 200) {
-          const responseData = await response.json(); // Usando .json() ao invés de .text()
+          const responseData = await response.json();
 
           if (responseData) {
-            // Se a resposta contiver dados, processa o CallResponseDTO
             const { id, url } = responseData;
 
-            // // Chama o endpoint para atualizar a disponibilidade do voluntário
-            // await fetch("http://localhost:8080/voluntarios/voluntarioEmFila", {
-            //   method: "POST",
-            //   headers: {
-            //     "Content-Type": "application/x-www-form-urlencoded",
-            //   },
-            //   body: new URLSearchParams({
-            //     id: id.toString(), // ID do voluntário
-            //     disponivel: "false", // Define o voluntário como não disponível
-            //   }),
-            // });
-
-            // Redireciona o usuário para a URL recebida
             if (url) {
-              window.open(url, "_blank"); // Abre a URL em uma nova aba
+              window.open(url, "_blank");
             }
           }
         } else {
@@ -49,13 +35,11 @@ export function RedirectUser() {
       }
     };
 
-    // Chama a função inicialmente e a cada 3 segundos
     checkAvailableVolunteer();
     const intervalId = setInterval(checkAvailableVolunteer, 1000);
 
-    // Limpeza do intervalo quando o componente for desmontado
     return () => clearInterval(intervalId);
-  }, []); // O array vazio faz com que o efeito seja executado apenas uma vez, quando o componente é montado
+  }, []);
 
   return (
     <div className="redirect-user-align">

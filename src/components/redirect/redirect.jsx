@@ -38,15 +38,12 @@ const RedirectPage = () => {
   };
 
   useEffect(() => {
-    // Chama a função inicialmente e a cada 3 segundos
     checkAvailability();
     const intervalId = setInterval(checkAvailability, 1000);
 
-    // Limpeza do intervalo quando o componente for desmontado
     return () => clearInterval(intervalId);
-  }, []); // O array vazio faz com que o efeito seja executado apenas uma vez, quando o componente é montado
+  }, []);
 
-  // Função para alternar a disponibilidade e redirecionar o voluntário
   const toggleAvailability = async () => {
     try {
       const voluntarioId = localStorage.getItem("voluntarioId"); // Recupera o ID do voluntário do localStorage
@@ -55,7 +52,6 @@ const RedirectPage = () => {
         return;
       }
 
-      // Define a disponibilidade como o estado invertido
       const disponivel = !isAvailable;
 
       const response = await fetch(
@@ -63,11 +59,11 @@ const RedirectPage = () => {
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/x-www-form-urlencoded", // Tipo de conteúdo
+            "Content-Type": "application/x-www-form-urlencoded",
           },
           body: new URLSearchParams({
-            id: voluntarioId, // ID do voluntário
-            disponivel: disponivel.toString(), // Disponível como string (true ou false)
+            id: voluntarioId,
+            disponivel: disponivel.toString(),
           }),
         }
       );
@@ -76,17 +72,14 @@ const RedirectPage = () => {
         throw new Error(`Erro no servidor: ${response.statusText}`);
       }
 
-      // Atualiza o estado local para refletir o novo status
       setIsAvailable(disponivel);
-
-      // Busca a URL de redirecionamento
 
       const callResponse = await response.json();
       if (callResponse && callResponse.url) {
         const { id, url } = callResponse;
-        setRedirectUrl(url); // Armazena a URL de redirecionamento
+        setRedirectUrl(url);
         if (url) {
-          window.open(url, "_blank"); // Abre a URL em uma nova aba
+          window.open(url, "_blank"); 
         }
       }
     } catch (error) {
@@ -104,7 +97,7 @@ const RedirectPage = () => {
         }`}
         size="large"
         onClick={toggleAvailability}
-        disabled={loading} // Desabilita o botão enquanto está carregando
+        disabled={loading}
       >
         {loading
           ? "Carregando..."
